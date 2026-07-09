@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "Rakshita",
+    "slug": "rakshita",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#fdf7f9"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.rakshita.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Rakshita needs your location to send it with an SOS alert and show nearby incidents.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Rakshita needs your location to send it with an SOS alert.",
+        "NSCameraUsageDescription": "Rakshita opens the camera in Emergency Mode to capture evidence.",
+        "NSMicrophoneUsageDescription": "Rakshita records audio in Emergency Mode and for the voice SOS trigger.",
+        "NSBluetoothAlwaysUsageDescription": "Rakshita uses Bluetooth to relay SOS beacons to nearby phones when there's no signal.",
+        "NSPhotoLibraryUsageDescription": "Rakshita needs photo access to read an Aadhaar QR code you select."
+      }
+    },
+    "android": {
+      "package": "com.rakshita.app",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "CAMERA",
+        "RECORD_AUDIO",
+        "BLUETOOTH",
+        "BLUETOOTH_ADMIN",
+        "BLUETOOTH_SCAN",
+        "BLUETOOTH_ADVERTISE",
+        "BLUETOOTH_CONNECT"
+      ]
+    },
+    "plugins": [
+      "expo-location",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Rakshita opens the camera in Emergency Mode to capture evidence."
+        }
+      ]
+    ]
+  }
+}
