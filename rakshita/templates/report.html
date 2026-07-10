@@ -1,0 +1,53 @@
+{% from "_navbar.html" import navbar with context %}
+{% extends "base.html" %}
+{% block title %}Report an Incident — Rakshita{% endblock %}
+{% block body %}
+{{ navbar('report') }}
+<div class="app-container">
+  <div class="card" style="max-width:560px;margin:0 auto;">
+    <h3>Report an incident</h3>
+    <p class="muted">Anonymous to other users — helps build the community hotspot map.</p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+
+    <form method="POST" id="reportForm">
+      {{ form.hidden_tag() }}
+      <div class="field">
+        {{ form.category.label }}
+        {{ form.category() }}
+      </div>
+      <div class="field">
+        {{ form.description.label }}
+        {{ form.description(placeholder="What happened? (optional)", rows="4") }}
+      </div>
+      {{ form.latitude(id="lat", style="display:none;") }}
+      {{ form.longitude(id="lng", style="display:none;") }}
+      <button type="button" id="attachLocation" class="btn btn-outline btn-small" style="margin-bottom:16px;">
+        📍 Attach my current location
+      </button>
+      <div id="locStatus" style="font-size:0.85rem;color:var(--ink-soft);margin-bottom:14px;"></div>
+      <button type="submit" class="btn btn-primary">Submit report</button>
+    </form>
+  </div>
+</div>
+
+<script>
+document.getElementById('attachLocation').addEventListener('click', () => {
+  const status = document.getElementById('locStatus');
+  if (!navigator.geolocation) { status.textContent = "Geolocation not supported on this device."; return; }
+  status.textContent = "Getting your location…";
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      document.getElementById('lat').value = pos.coords.latitude;
+      document.getElementById('lng').value = pos.coords.longitude;
+      status.textContent = "Location attached ✓";
+    },
+    () => { status.textContent = "Couldn't get location — you can still submit without it."; }
+  );
+});
+</script>
+{% endblock %}

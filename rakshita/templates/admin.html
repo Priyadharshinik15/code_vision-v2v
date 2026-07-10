@@ -1,0 +1,83 @@
+{% from "_navbar.html" import navbar with context %}
+{% extends "base.html" %}
+{% block title %}Admin Dashboard — Rakshita{% endblock %}
+{% block body %}
+{{ navbar('admin') }}
+<div class="app-container">
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <div class="grid grid-3" style="margin-bottom:20px;">
+    <div class="card"><h3>{{ stats.active_alerts }}</h3><p class="muted">Active SOS alerts</p></div>
+    <div class="card"><h3>{{ stats.open_reports }}</h3><p class="muted">Open reports of {{ stats.total_reports }} total</p></div>
+    <div class="card"><h3>{{ stats.total_users }}</h3><p class="muted">Registered users</p></div>
+  </div>
+
+  {% if active_alerts %}
+  <div class="card" style="margin-bottom:20px;">
+    <h3>Active SOS alerts</h3>
+    {% for a in active_alerts %}
+    <div class="contact-row">
+      <div class="contact-meta">
+        <strong>{{ a.user.name }}</strong>
+        <span>{{ a.created_at.strftime('%Y-%m-%d %H:%M UTC') }} · notified: {{ a.notified_contacts or '—' }}</span>
+      </div>
+      <a class="btn btn-outline btn-small" href="https://maps.google.com/?q={{ a.latitude }},{{ a.longitude }}" target="_blank" rel="noopener">View location</a>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="card">
+    <h3>Incident reports</h3>
+    <form method="GET" style="display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap;">
+      <select name="status" onchange="this.form.submit()" style="padding:10px 14px;border-radius:10px;border:1px solid #e6ddf8;background:var(--purple-100);">
+        <option value="">All statuses</option>
+        {% for s in ['open','reviewing','resolved'] %}
+        <option value="{{ s }}" {{ 'selected' if status_filter==s }}>{{ s|capitalize }}</option>
+        {% endfor %}
+      </select>
+      <select name="category" onchange="this.form.submit()" style="padding:10px 14px;border-radius:10px;border:1px solid #e6ddf8;background:var(--purple-100);">
+        <option value="">All categories</option>
+        {% for c in ['harassment','stalking','unsafe_area','theft','assault','other'] %}
+        <option value="{{ c }}" {{ 'selected' if category_filter==c }}>{{ c|replace('_',' ')|capitalize }}</option>
+        {% endfor %}
+      </select>
+    </form>
+
+    {% if reports %}
+      {% for r in reports %}
+      <div class="contact-row">
+        <div class="contact-meta">
+          <strong>{{ r.category|replace('_',' ')|capitalize }}</strong>
+          <span>{{ r.created_at.strftime('%Y-%m-%d %H:%M UTC') }}{% if r.description %} · {{ r.description[:80] }}{% endif %}</span>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span class="status-pill {{ 'safe' if r.status=='resolved' else ('open' if r.status=='reviewing' else 'active') }}">{{ r.status }}</span>
+          {% if r.latitude %}
+          <a class="btn btn-outline btn-small" href="https://maps.google.com/?q={{ r.latitude }},{{ r.longitude }}" target="_blank" rel="noopener">Map</a>
+          {% endif %}
+          <form method="POST" action="{{ url_for('admin_update_report', report_id=r.id) }}" style="display:inline;">
+            <select name="status" onchange="this.form.submit()" style="padding:6px 10px;border-radius:8px;border:1px solid #e6ddf8;">
+              {% for s in ['open','reviewing','resolved'] %}
+              <option value="{{ s }}" {{ 'selected' if r.status==s }}>{{ s|capitalize }}</option>
+              {% endfor %}
+            </select>
+          </form>
+          <form method="POST" action="{{ url_for('admin_delete_report', report_id=r.id) }}">
+            <button type="submit" class="btn btn-outline btn-small">Delete</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p class="muted">No reports match this filter.</p>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}

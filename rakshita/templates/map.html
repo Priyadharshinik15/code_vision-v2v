@@ -1,0 +1,26 @@
+{% from "_navbar.html" import navbar with context %}
+{% extends "base.html" %}
+{% block title %}Safety Map — Rakshita{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+{% endblock %}
+{% block body %}
+{{ navbar('map') }}
+<div class="app-container">
+  <div class="grid" style="grid-template-columns: 2fr 1fr; gap:20px;">
+    <div class="card">
+      <h3>Recent incidents near you</h3>
+      <p class="muted">Reports from the last 30 days, updated live.</p>
+      <div id="map"></div>
+    </div>
+    <div class="card">
+      <h3>By category</h3>
+      <canvas id="categoryChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.3/chart.umd.min.js"></script>
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+{% endblock %}

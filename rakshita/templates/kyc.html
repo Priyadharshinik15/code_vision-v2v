@@ -1,0 +1,50 @@
+{% from "_navbar.html" import navbar with context %}
+{% extends "base.html" %}
+{% block title %}Aadhaar Verification — Rakshita{% endblock %}
+{% block body %}
+{{ navbar('kyc') }}
+<div class="app-container">
+  <div class="card" style="max-width:560px;margin:0 auto;">
+    <h3>Aadhaar verification</h3>
+    <p class="muted">
+      Optional. Upload a clear photo of your Aadhaar QR code. This reads the
+      printed QR only — it does <strong>not</strong> verify UIDAI's digital
+      signature, so treat it as a convenience check, not legal proof of identity.
+    </p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+
+    {% if current_user.aadhaar_verified %}
+      <span class="status-pill safe">QR verified on file</span>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data" style="margin-top:18px;">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="field">
+        <label>Aadhaar QR photo</label>
+        <input type="file" name="qr_image" accept="image/*" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Upload &amp; read QR</button>
+    </form>
+  </div>
+
+  {% if records %}
+  <div class="card" style="max-width:560px;margin:20px auto 0;">
+    <h3>Previous attempts</h3>
+    {% for r in records %}
+    <div class="contact-row">
+      <div class="contact-meta">
+        <strong>{{ r.parsed_name or 'Unreadable' }}</strong>
+        <span>{{ r.created_at.strftime('%Y-%m-%d %H:%M UTC') }}{% if r.parsed_gender %} · {{ r.parsed_gender }}{% endif %}{% if r.parsed_yob %} · YOB {{ r.parsed_yob }}{% endif %}</span>
+      </div>
+      <span class="status-pill {{ 'safe' if r.status=='parsed' else 'active' }}">{{ r.status }}</span>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

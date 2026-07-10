@@ -1,0 +1,59 @@
+{% from "_navbar.html" import navbar with context %}
+{% extends "base.html" %}
+{% block title %}Emergency Contacts — Rakshita{% endblock %}
+{% block body %}
+{{ navbar('contacts') }}
+<div class="app-container">
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <div class="grid grid-2">
+    <div class="card">
+      <h3>Add a trusted contact</h3>
+      <p class="muted">Up to {{ max_contacts }} people who get notified the instant you trigger SOS.</p>
+      <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="field">
+          {{ form.name.label }}
+          {{ form.name(placeholder="e.g. Mom, Priya, Roommate") }}
+          {% for e in form.name.errors %}<div class="errors">{{ e }}</div>{% endfor %}
+        </div>
+        <div class="field">
+          {{ form.phone.label }}
+          {{ form.phone(placeholder="+91 9XXXXXXXXX") }}
+          {% for e in form.phone.errors %}<div class="errors">{{ e }}</div>{% endfor %}
+        </div>
+        <div class="field">
+          {{ form.relation.label }}
+          {{ form.relation(placeholder="e.g. Mother, Friend") }}
+        </div>
+        <button type="submit" class="btn btn-primary" {{ 'disabled' if contacts|length >= max_contacts }}>Add contact</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h3>Your contacts</h3>
+      {% if contacts %}
+        {% for c in contacts %}
+        <div class="contact-row">
+          <div class="contact-meta">
+            <strong>{{ c.name }}</strong>
+            <span>{{ c.phone }}{% if c.relation %} · {{ c.relation }}{% endif %}</span>
+          </div>
+          <form method="POST" action="{{ url_for('delete_contact', contact_id=c.id) }}">
+            <button type="submit" class="btn btn-outline btn-small">Remove</button>
+          </form>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p class="muted">No contacts saved yet — add one to activate real SOS alerts.</p>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}
