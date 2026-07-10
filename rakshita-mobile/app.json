@@ -44,5 +44,30 @@
         }
       ]
     ]
+  },
+  "eas": {
+    "projectId": "rakshita-women-safety",
+    "build": {
+      "development": {
+        "distribution": "internal",
+        "android": {
+          "buildType": "apk"
+        },
+        "ios": {
+          "buildType": "simulator"
+        }
+      },
+      "preview": {
+        "distribution": "internal",
+        "android": {
+          "buildType": "apk"
+        }
+      },
+      "production": {
+        "android": {
+          "buildType": "apk"
+        }
+      }
+    }
   }
 }

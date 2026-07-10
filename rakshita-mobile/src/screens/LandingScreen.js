@@ -6,10 +6,11 @@ import DecorativeBackground from "../components/DecorativeBackground";
 
 export default function LandingScreen({ navigation }) {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.rootContainer}>
       <DecorativeBackground />
-
-      <View style={styles.center}>
+      
+      <SafeAreaView style={styles.container}>
+        <View style={styles.center}>
         <Image source={require("../../assets/logo.png")} style={styles.logo} resizeMode="contain" />
 
         <Text style={styles.wordmark}>R A K S H I T A</Text>
@@ -54,12 +55,14 @@ export default function LandingScreen({ navigation }) {
           <Text style={styles.footer}>Your Safety. Our Priority.</Text>
         </View>
       </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#fdf6f4" },
+  rootContainer: { flex: 1, backgroundColor: "#fdf6f4" },
+  container: { flex: 1, backgroundColor: "transparent" },
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingHorizontal: 32, width: "100%", maxWidth: 440, alignSelf: "center" },
 
   logo: { width: 140, height: 112 },

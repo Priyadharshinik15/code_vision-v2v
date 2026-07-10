@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert } from "react-native";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Location from "expo-location";
 import { Card, OutlineButton } from "../components/UI";
-import RakshitaLogo from "../components/RakshitaLogo";
 import EmergencyModeCamera from "../components/EmergencyModeCamera";
 import { useShakeDetection } from "../hooks/useShakeDetection";
 import { isVoiceTriggerSupported, VoiceTrigger } from "../native/VoiceTrigger";
@@ -105,7 +104,7 @@ export default function DashboardScreen({ navigation }) {
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.cream }}>
       <View style={styles.navbar}>
         <View style={styles.brandRow}>
-          <RakshitaLogo size={28} />
+          <Image source={require("../../assets/logo.png")} style={styles.logo} resizeMode="contain" />
           <View style={{ marginLeft: 8 }}>
             <Text style={styles.brand}>RAKSHITA</Text>
             {user?.name ? <Text style={styles.brandSub}>Hi, {user.name}</Text> : null}
@@ -190,6 +189,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.purple100,
   },
   brandRow: { flexDirection: "row", alignItems: "center" },
+  logo: { width: 34, height: 27 },
   brand: { fontWeight: "700", color: colors.purple900, letterSpacing: 1 },
   brandSub: { fontSize: 11, color: colors.inkSoft, marginTop: 1 },
   logout: { color: colors.inkSoft },

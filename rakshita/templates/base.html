@@ -5,34 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>{% block title %}Rakshita — Your Safety. Our Priority.{% endblock %}</title>
+<link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/png">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 {% block head %}{% endblock %}
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
 
-<div class="bg-scene">
-  <div class="blob purple-tl"></div>
-  <div class="blob pink-tr"></div>
-  <div class="blob purple-bl"></div>
-  <div class="blob pink-br"></div>
-  <div class="dot-grid tl"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-  <div class="dot-grid br"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-
-  <svg class="leaf-branch top-right" width="260" height="220" viewBox="0 0 260 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M255 5 L150 110" stroke="#e7b9bd" stroke-width="1.5" opacity="0.6"/>
-    <ellipse cx="200" cy="55" rx="26" ry="13" fill="#eec3c7" opacity="0.8" transform="rotate(40 200 55)"/>
-    <ellipse cx="230" cy="30" rx="22" ry="11" fill="#f0a8ad" opacity="0.8" transform="rotate(35 230 30)"/>
-    <ellipse cx="175" cy="85" rx="24" ry="12" fill="#eec3c7" opacity="0.7" transform="rotate(48 175 85)"/>
-    <circle cx="120" cy="130" r="4" fill="#e7b9bd" opacity="0.7"/>
-  </svg>
-
-  <svg class="leaf-branch bottom-left" width="300" height="260" viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 255 L140 120" stroke="#c9b8f0" stroke-width="1.5" opacity="0.6"/>
-    <ellipse cx="60" cy="200" rx="26" ry="13" fill="#d8c8f5" opacity="0.8" transform="rotate(-40 60 200)"/>
-    <ellipse cx="95" cy="165" rx="24" ry="12" fill="#c9b8f0" opacity="0.8" transform="rotate(-35 95 165)"/>
-    <ellipse cx="130" cy="135" rx="22" ry="11" fill="#d8c8f5" opacity="0.7" transform="rotate(-30 130 135)"/>
-  </svg>
-</div>
+{% block background %}
+<div class="bg-scene"></div>
+<div class="bg-overlay"></div>
+{% endblock %}
 
 {% block body %}{% endblock %}
 
