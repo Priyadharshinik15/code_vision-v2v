@@ -60,7 +60,7 @@ export default function LandingScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fdf6f4" },
-  center: { flex: 1, alignItems: "center", justifyContent: "center", paddingHorizontal: 32 },
+  center: { flex: 1, alignItems: "center", justifyContent: "center", paddingHorizontal: 32, width: "100%", maxWidth: 440, alignSelf: "center" },
 
   logo: { width: 140, height: 112 },
 
