@@ -3,6 +3,7 @@ import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Field, PrimaryButton, ErrorText } from "../components/UI";
 import { useAuth } from "../context/AuthContext";
+import { describeApiError } from "../api/client";
 import { colors } from "../theme/colors";
 
 export default function LoginScreen({ navigation }) {
@@ -18,7 +19,7 @@ export default function LoginScreen({ navigation }) {
     try {
       await login({ email, password });
     } catch (e) {
-      setError(e?.response?.data?.error || "Incorrect email or password.");
+      setError(describeApiError(e));
     } finally {
       setLoading(false);
     }

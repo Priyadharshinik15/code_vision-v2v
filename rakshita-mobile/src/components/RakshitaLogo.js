@@ -1,40 +1,52 @@
 import React from "react";
-import Svg, { Path, Defs, LinearGradient, Stop, G, Ellipse, Line } from "react-native-svg";
+import Svg, { Path, Defs, LinearGradient, Stop, Ellipse } from "react-native-svg";
 
+/**
+ * Rakshita mark: shield outline containing a woman's profile silhouette
+ * with flowing hair, plus a small leaf sprig on the lower right of the
+ * shield — matching the reference landing screen design.
+ */
 export default function RakshitaLogo({ size = 140 }) {
-  const height = size * (160 / 150);
+  const height = size * (170 / 150);
   return (
-    <Svg width={size} height={height} viewBox="0 0 150 160">
+    <Svg width={size} height={height} viewBox="0 0 150 170">
       <Defs>
-        <LinearGradient id="shieldGrad" x1="0" y1="0" x2="150" y2="160">
+        <LinearGradient id="shieldGrad" x1="0" y1="0" x2="150" y2="170">
           <Stop offset="0" stopColor="#c9b8f0" />
-          <Stop offset="1" stopColor="#8b7bd8" />
+          <Stop offset="1" stopColor="#9c8ae0" />
         </LinearGradient>
-        <LinearGradient id="faceGrad" x1="30" y1="20" x2="115" y2="150">
+        <LinearGradient id="faceGrad" x1="35" y1="15" x2="105" y2="150">
           <Stop offset="0" stopColor="#b39ce8" />
-          <Stop offset="1" stopColor="#7a6bc9" />
+          <Stop offset="1" stopColor="#8a7ad4" />
         </LinearGradient>
       </Defs>
+
+      {/* Shield outline */}
       <Path
-        d="M75,8 L138,26 V78 C138,118 112,144 75,156 C38,144 12,118 12,78 V26 Z"
+        d="M75,6 L136,24 V76 C136,116 111,142 75,158 C39,142 14,116 14,76 V24 Z"
         stroke="url(#shieldGrad)"
-        strokeWidth={4}
+        strokeWidth={3.5}
         fill="none"
       />
+
+      {/* Woman's profile silhouette with flowing hair */}
       <Path
-        d="M74,36 C66,36 59,40 55,47 C53,51 52,55 49,58 C45,60 41,61 38,63
-           C42,65 46,66 49,68 C47,71 47,75 50,78 C53,82 58,85 62,89
-           C66,94 68,100 69,107 C70,113 70,118 68,123 C71,128 76,132 78,138
-           C82,148 80,158 70,163 C61,168 50,165 44,157 C39,150 39,141 43,133
-           C39,127 37,120 38,113 C39,105 43,98 49,93 C44,88 41,82 41,75
-           C41,64 46,55 54,49 C51,45 51,40 55,37 C61,33 68,33 74,36 Z"
+        d="M72,34 C64,34 57,38 53,45 C51,49 51,53 48,56
+           C50,59 53,60 55,62 C52,65 51,69 53,73
+           C48,77 44,83 43,90 C42,97 43,104 46,110
+           C42,116 40,124 41,132 C42,141 47,149 55,153
+           C63,157 72,155 78,149 C83,144 85,137 84,130
+           C89,126 92,119 91,112 C90,105 86,99 80,96
+           C84,91 86,84 84,78 C82,72 78,68 72,66
+           C76,62 77,56 74,51 C71,46 65,44 60,46
+           C62,42 66,38 72,34 Z"
         fill="url(#faceGrad)"
       />
-      <G>
-        <Ellipse cx="9" cy="13" rx="8" ry="16" fill="#eec3c7" transform="translate(104,86) rotate(50 9 13)" />
-        <Ellipse cx="19" cy="29" rx="7" ry="14" fill="#f0a8ad" transform="translate(104,86) rotate(45 19 29)" />
-        <Ellipse cx="28" cy="44" rx="6" ry="12" fill="#eec3c7" transform="translate(104,86) rotate(38 28 44)" />
-      </G>
+
+      {/* Small leaf sprig, lower-right of the shield */}
+      <Ellipse cx="103" cy="98" rx="7" ry="14" fill="#eec3c7" transform="rotate(50 103 98)" />
+      <Ellipse cx="112" cy="112" rx="6" ry="12" fill="#f0a8ad" transform="rotate(42 112 112)" />
+      <Ellipse cx="120" cy="126" rx="5" ry="10" fill="#eec3c7" transform="rotate(35 120 126)" />
     </Svg>
   );
 }

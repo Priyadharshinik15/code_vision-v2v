@@ -8,7 +8,15 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   const loadSession = useCallback(async () => {
-    const token = await tokenStore.get();
+    let token = null;
+    try {
+      token = await tokenStore.get();
+    } catch (e) {
+      // Storage read failed for any reason (unsupported platform, corrupted
+      // value, etc.) — treat as "no session" rather than hanging forever.
+      setLoading(false);
+      return;
+    }
     if (!token) {
       setLoading(false);
       return;
