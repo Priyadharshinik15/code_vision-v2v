@@ -10,3 +10,4 @@ email-validator==2.1.1
 # Optional: only needed if AADHAAR_KYC_ENABLED=true
 opencv-python-headless==4.10.0.84
 numpy==1.26.4
+gunicorn==22.0.0
