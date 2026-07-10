@@ -391,8 +391,10 @@ This project is licensed under the MIT License — see [LICENSE](LICENSE) file f
 
 ## 👥 Team
 
-- **Priyadharshini K** — [GitHub](https://github.com/Priyadharshinik15)
 - **Shamritha GS** — [GitHub](https://github.com/ShamrithaGS)
+- **Priyadharshini K** — [GitHub](https://github.com/Priyadharshinik15)
+- **Deepika Devi P** - [GitHub](https://github.com/DeepikaDevi2906)
+- **Kasturi E** - [GitHub](https://github.com/kasthuri06)
 
 ## 🙌 Acknowledgments
 
