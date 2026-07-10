@@ -74,6 +74,10 @@ Download the latest APK from releases:
 4. Grant required permissions when prompted
 5. Launch Rakshita from your app drawer
 
+**QR Code:**
+<img width="251" height="251" alt="image" src="https://github.com/user-attachments/assets/8970e576-0810-422f-a0ca-8358fb0bb09c" />
+Download Expo Go and sacn the QR code on android.
+
 **Required Permissions:**
 - Location (Fine & Coarse) — For emergency location sharing
 - Camera — For emergency mode photo/video capture
