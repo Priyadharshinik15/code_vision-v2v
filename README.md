@@ -83,13 +83,14 @@ Download the latest APK from releases:
 
 
 
-<img width="251" height="251" alt="image" src="https://github.com/user-attachments/assets/8970e576-0810-422f-a0ca-8358fb0bb09c" />
+<img width="540" height="540" alt="Rakshita-Download-QR" src="https://github.com/user-attachments/assets/ce005de5-2e3a-40c0-b172-25de5a22275b" />
 
 
 
 
 
-Download Expo Go and sacn the QR code on android.
+
+
 
 **Required Permissions:**
 - Location (Fine & Coarse) — For emergency location sharing
