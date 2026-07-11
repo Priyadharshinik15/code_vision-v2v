@@ -44,7 +44,7 @@ Rakshita empowers women with intelligent safety features including one-tap emerg
 ### Mobile App (`rakshita-mobile/`)
 - **Framework**: React Native with Expo
 - **Navigation**: React Navigation (Native Stack)
-- **Maps**: React Native Maps (Google Maps integration)
+- **Maps**: Leaflet + OpenStreetMap (via WebView) — no API key required
 - **Permissions**: Expo Location, Camera, Sensors
 - **BLE**: React Native BLE PLX for offline beacon support
 - **Voice**: React Native Voice for voice commands
@@ -62,6 +62,12 @@ Rakshita empowers women with intelligent safety features including one-tap emerg
 - **CV/ML**: OpenCV (optional) for Aadhaar QR code processing
 
 ## 📱 Download & Installation
+
+### Live Deployment(web)
+
+-**🌐 Live Backend: https://code-vision-v2v.onrender.com**
+- Backend Cold Start: Free-tier hosting sleeps after ~15 min inactivity; first request after idle may take 30-60s to respond
+
 
 ### For Users (Android)
 Download the latest APK from releases:
@@ -382,7 +388,7 @@ python -m pytest --cov=.
 
 ### Getting Help
 - **GitHub Issues**: [Report bugs or request features](https://github.com/Priyadharshinik15/code_vision-v2v/issues)
-- **Email**: Contact the team at [your-email]
+- **Email**: Contact the team at [gsshamritha05@gmail.com]
 - **Documentation**: See [Wiki](https://github.com/Priyadharshinik15/code_vision-v2v/wiki)
 
 ### Emergency Resources
