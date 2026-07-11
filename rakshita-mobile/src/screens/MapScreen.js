@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import * as Location from "expo-location";
 import { View, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { WebView } from "react-native-webview";
@@ -14,12 +15,14 @@ import { colors } from "../theme/colors";
  */
 export default function MapScreen() {
   const [token, setToken] = useState(null);
+  const [locationReady, setLocationReady] = useState(false);
 
   useEffect(() => {
     tokenStore.get().then(setToken);
+    Location.requestForegroundPermissionsAsync().finally(() => setLocationReady(true));
   }, []);
 
-  if (!token) return <View style={{ flex: 1, backgroundColor: colors.cream }} />;
+  if (!token || !locationReady) return <View style={{ flex: 1, backgroundColor: colors.cream }} />;
 
   const html = `
     <!DOCTYPE html>
