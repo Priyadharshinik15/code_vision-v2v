@@ -6,7 +6,7 @@
 
 Rakshita is a comprehensive women's safety mobile application designed to provide quick, reliable emergency assistance through a React Native app (Expo) backed by a Python Flask server.
 
-## 🎯 Overview
+##  Overview
 
 Rakshita empowers women with intelligent safety features including one-tap emergency alerts, voice-activated SOS, location sharing, emergency camera mode, and offline beacon support. The app combines modern mobile technology with practical safety features to create a comprehensive safety network.
 
